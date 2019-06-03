@@ -1,0 +1,9 @@
+rofi.theme:                          material
+rofi.width:                          50
+rofi.lines:                          10
+rofi.parse-hosts:                    true
+rofi.kb-mode-next:                   Shift+Right,Control+Tab,Alt+l
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Alt+h
+rofi.kb-row-up:                      Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k
+rofi.kb-row-down:                    Down,Control+n,Alt+j
+rofi.fullscreen:                     false

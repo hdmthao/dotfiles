@@ -1,15 +1,15 @@
-
 # i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# Please see http://i3wm.org/docs/userguide.html for aGcomplete reference!
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
+
 
 # set default desktop layout (default is tiling)
 workspace_layout tabbed 
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
+new_window pixel 2
 new_float normal
 
 # Hide borders
@@ -17,12 +17,12 @@ hide_edge_borders none
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel 2
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 11
+font xft:DroidSans 13
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -39,7 +39,7 @@ bindsym $mod+d exec rofi -show run
 bindsym Mod1+Tab exec rofi -show window
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+# bindsym $mod+z exec --no-startup-id morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -61,11 +61,9 @@ bindsym $mod+Ctrl+m exec pavucontrol
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-# bindsym $mod+F5 exec terminal -e 'mocp'
+bindsym $mod+Shift+F3 exec terminal -e "ranger"
 bindsym $mod+Print --release exec flameshot gui 
-bindsym Print exec flameshot full -p "/home/hdmthao/Pictures/screenshot/" 
+bindsym Print exec flameshot full -p "/home/hdmt/Pictures/screenshot/" 
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
@@ -143,11 +141,11 @@ bindsym $mod+Ctrl+Left workspace prev
 set $ws1 
 set $ws2 
 set $ws3 
-set $ws4 
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
+set $ws4  
+set $ws5 
+set $ws6 
+set $ws7 
+set $ws8 
 set $ws9 
 
 # switch to workspace
@@ -184,10 +182,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
+assign [class="Pcmanfm"] $ws3
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -216,7 +211,7 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [class="Spotify"] move to workspace $ws8
+for_window [class="Spotify"] move to workspace $ws9
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -226,6 +221,10 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
+# Open TaskManager/GoTop
+bindsym $mod+F12 exec terminal -e "gotop" ; 
+
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -255,10 +254,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -279,14 +278,16 @@ exec --no-startup-id nm-applet
 # exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec --no-startup-id dropbox
+# exec --no-startup-id dropbox
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker i3lock-fancy --font @Ringbearer-Medium@ --text "ASK ME TO UNLOCK" 
+exec --no-startup-id xautolock -time 10 -locker i3lock-fancy --font "Ringbearer-Medium" --text "ASK ME TO UNLOCK" 
 # exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id ~/.config/polybar/launch.sh &
+exec --no-startup-id ibus-daemon
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -320,39 +321,39 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start Polybar
-# exec_always --no-startup-id $HOME/..config/polyar/launch.sh
+exec_always --no-startup-id $HOME/..config/polyar/launch.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
+# bar {
+	# i3bar_command i3bar
+	# status_command i3status
+#	position bottom
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
+### please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+##	tray_output primary
+##	tray_output eDP1
 
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
+	# bindsym button4 nop
+	# bindsym button5 nop
+##   font xft:URWGothic-Book 11
+	# strip_workspace_numbers yes
 
-    colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
+#    colors {
+#        background #222D31
+#        statusline #F9FAF9
+#        separator  #454947
 
-#                      border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
-}
+##                      border  backgr. text
+#        focused_workspace  #F9FAF9 #16a085 #292F34
+#        active_workspace   #595B5B #353836 #FDF6E3
+#        inactive_workspace #595B5B #222D31 #EEE8D5
+#        binding_mode       #16a085 #2C2C2C #F9FAF9
+#        urgent_workspace   #16a085 #FDF6E3 #E5201D
+#    }
+# }
 
 # hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
@@ -422,14 +423,29 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# enable Media Key
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+ 
 # Lock Screen
-bindsym $mod+Ctrl+l exec --no-startup-id i3lock-fancy -p --font "Ringbearer-Medium" --text "Just Type Key To Unlock"
+bindsym $mod+Ctrl+l exec --no-startup-id i3lock-fancy -p --font "Ringbearer-Medium" --text "Ask Me Something To Unlock"
 
 # Start Compton
-exec --no-startup-id compton
+exec_always --no-startup-id compton
 
 
 # Wallpaper
-exec_always feh --bg-scale /home/hdmthao/Pictures/wallpaper.png
-
-exec --no-startup-id ibus-daemon
+exec wal -i /home/hdmt/Pictures/wallpaper/wallpaper_4.jpg -n
+exec feh --bg-scale /home/hdmt/Pictures/wallpaper/wallpaper_4.jpg
